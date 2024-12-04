@@ -1,0 +1,13 @@
+body{
+    background-color: #000;
+}
+h2,p{
+    color: #eee;
+}
+div{
+    background-color: #555;
+}
+#bookDisplay{
+    background-color: #222;
+    border: #fff solid 2px;
+}
