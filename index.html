@@ -8,14 +8,50 @@
 </head>
 <body>
     <!-- Dropdown for selecting categories -->
-    <select id="selection">
-        <option value="" selected disabled>Select a category</option>
-        <option value="Informacinės technologijos">Informacinės technologijos</option>
-        <option value="Fizika">Fizika</option>
-        <option value="Literatūra">Literatūra</option>
-        <option value="Matematika">Matematika</option>
-        <option value="Psichologija">Psichologija</option>
-    </select>
+    <label for="select">Select a catagory:</label>
+    <div>
+        <input list="selection" id="selecting" name="select" />
+    </div>
+    <datalist id="selection">
+        <option value="Informacinės technologijos"></option>
+        <option value="Fizika"></option>
+        <option value="Literatūra"></option>
+        <option value="Matematika"></option>
+        <option value="Psichologija"></option>
+    </datalist>
+
+    <label for="bookName">Select a specific book:</label>
+    <div>
+        <input list="books" id="book" name="bookName" />
+    </div>
+    <datalist id="books">
+        <option value="Programavimas linksmai"></option>
+        <option value="JavaScript for Beginners"></option>
+        <option value="Web Development 101"></option>
+        <option value="AI Programming"></option>
+        <option value="Advanced Python"></option>
+        <option value="Mechanika ir Judėjimas"></option>
+        <option value="Elektromagnetizmas"></option>
+        <option value="Šviesos teorija"></option>
+        <option value="Termodinamika"></option>
+        <option value="Kvantinė fizika"></option>
+        <option value="Shakespeare: Asmenybė ir kūryba"></option>
+        <option value="Poezija ir pasaka"></option>
+        <option value="Romanų pasaulis"></option>
+        <option value="Klasikiniai kūriniai"></option>
+        <option value="Moderni literatūra"></option>
+        <option value="Algebra pradedantiesiems"></option>
+        <option value="Matematikos pagrindai"></option>
+        <option value="Geometrijos pradžiamokslis"></option>
+        <option value="Kalkuliacija"></option>
+        <option value="Statistika ir tikimybė"></option>
+        <option value="Psichologijos pagrindai"></option>
+        <option value="Kognityvinė psichologija"></option>
+        <option value="Psichologija ir žmogaus elgsena"></option>
+        <option value="Psichoterapija"></option>
+        <option value="Socialinė psichologija"></option>
+    </datalist>
+
 
     <!-- Container for displaying book details -->
     <header id="bookDisplay"></header>

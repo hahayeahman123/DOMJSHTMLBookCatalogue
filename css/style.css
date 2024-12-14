@@ -1,7 +1,7 @@
 body{
     background-color: #000;
 }
-h2,p{
+h2,p, label, li, header{
     color: #eee;
 }
 div{
@@ -11,3 +11,7 @@ div{
     background-color: #222;
     border: #fff solid 2px;
 }
+label{
+    color: #eee;
+}
+

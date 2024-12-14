@@ -226,37 +226,62 @@ const inventory = [
         ]
     }
 ];
-const option = document.getElementById('selection'); // Select the <select> element
+const option = document.getElementById('selecting'); // Select the <select> element
 
-option.addEventListener('change', (event) => { // If we select a catagory, it counts as "change"
-    const selectedCategory = event.target.value; // Get the selected category
-    const displayContainer = document.querySelector("#bookDisplay"); // Target the container where books will be displayed
-    displayContainer.innerHTML = ""; // Clear the previous book details
 
-    // Find the selected category in the inventory
-    const categoryData = inventory.find(item => item.category === selectedCategory);
+option.addEventListener('input', () => {
+    const selectedValue = option.value; // Get the current input value
+    const categoryData = inventory.find(item => item.category === selectedValue); // Find matching category
 
     if (categoryData) {
-        // Loop through the books and dynamically create elements
+        // Clear the previous display
+        bookDisplay.innerHTML = "";
+
+        // Create a list to display book details
+        const bookList = document.createElement("ul");
+
         categoryData.books.forEach(book => {
-            // Create a wrapper for each book
-            const bookWrapper = document.createElement("div");
-            bookWrapper.style.marginBottom = "1em"; // Add spacing between books
+            const listItem = document.createElement("li");
+            listItem.textContent = `${book.title}, ISBN: ${book.ISBN}, Year: ${book.publishing_year}, Pages: ${book.pages}, Quantity: ${book.quantity}, Price: $${book.price}`;
+            bookList.appendChild(listItem);
+        });
 
-            // Create a title element
-            const titleElement = document.createElement("h2");
-            titleElement.textContent = book.title;
+        bookDisplay.appendChild(bookList);
+    } else {
+        // Clear display if no category matches
+        bookDisplay.innerHTML = "No books found for the selected category.";
+    }
+});
 
-            // Create a details paragraph
-            const detailsElement = document.createElement("p");
-            detailsElement.textContent = `ISBN: ${book.ISBN}, Year: ${book.publishing_year}, Pages: ${book.pages}, Price: $${book.price}`;
+const bookInput = document.getElementById("book"); // Input field for book selection
+const bookDisplay = document.getElementById("bookDisplay"); // Book details display container
 
-            // Append the title and details to the book wrapper
-            bookWrapper.appendChild(titleElement);
-            bookWrapper.appendChild(detailsElement);
+// Event listener for book selection
+bookInput.addEventListener('input', () => {
+    const selectedValue = bookInput.value; // Get the current input value
+    let foundBook = null; // Placeholder for the book details
 
-            // Append the book wrapper to the container
-            displayContainer.appendChild(bookWrapper);
-        })
+    // Loop through all categories and their books
+    for (const category of inventory) {
+        const book = category.books.find(item => item.title === selectedValue); // Find the book by title
+        if (book) {
+            foundBook = book; // Save the book if found
+            break; // Exit the loop once the book is found
         }
+    }
+
+    // Display the book details if a match is found
+    if (foundBook) {
+        bookDisplay.innerHTML = `
+            <p><strong>Title:</strong> ${foundBook.title}</p>
+            <p><strong>ISBN:</strong> ${foundBook.ISBN}</p>
+            <p><strong>Publishing Year:</strong> ${foundBook.publishing_year}</p>
+            <p><strong>Pages:</strong> ${foundBook.pages}</p>
+            <p><strong>Quantity:</strong> ${foundBook.quantity}</p>
+            <p><strong>Price:</strong> $${foundBook.price}</p>
+        `;
+    } else {
+        // Clear display if no book matches
+        bookDisplay.innerHTML = "No book details found.";
+    }
 });
